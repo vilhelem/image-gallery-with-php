@@ -1,0 +1,3 @@
+<p>
+&copy; KovászUbisoft
+</p>
