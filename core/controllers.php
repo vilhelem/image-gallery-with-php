@@ -1,5 +1,27 @@
-<?
- /**
+<?php
+/**
+ * controllers.php: Az egyes útvonalakat (route) lekezelő függvények.
+ * Minden függvénynek egy tömböt kell visszaadnia, aminek az első eleme a nézet (view)  neve.
+ * Második eleme egy assoc tömb, amiben minden kulcs-érték párnak szerepelnie kell, amit a nézet használni fog.
+ * return ["viewname", ['key1' => 'value1', 'key2' => 'value2', ...]];
+ */
+
+/**
+ * notFoundController()
+ *
+ * @return void
+ */
+function notFoundController() {
+    return [
+        '404', 
+        [
+            'title' => 'The page you are looking for is not found.'
+        ]
+    ];
+}
+
+
+/**
  * homeController()
  *
  * @return void
@@ -19,20 +41,26 @@ function homeController() {
      */
     $size = $_GET["size"] ?? 10;    // $size: lapozási oldalméret
     $page = $_GET["page"] ?? 1;     // $page: oldalszám
- 
+
     // $connection: Adatbázis kapcsolat
     global $config;
     $connection = getConnection($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
- 
+
     // $total: a képek számának meghatározása
     $total = getTotal($connection);
- 
+
     // $offset: eltolás kiszámítása
     $offset = ($page - 1) * $size;
- 
+
     // $content: egy oldalnyi kép
     $content = getPhotosPaginated($connection, $size, $offset);
- 
+
+    /**
+    * $lastpage - az utolsó oldal sorszáma
+    */
+    $lastpage = $total % $size == 0 ? intdiv($total,$size) : intdiv($total,$size) + 1;
+
+
     return [
         'home',
         [
@@ -41,7 +69,7 @@ function homeController() {
             'total' => $total,
             'size' => $size,
             'page' => $page,
-            'lastpage' => $lastPage
+            'lastpage' => $lastpage
         ]
     ];
 }

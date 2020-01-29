@@ -16,9 +16,9 @@
             "request": "launch",
             "program": "${file}",
             "cwd": "${fileDirname}",
-            "port": 9000, 
+            "port": 9000,
             "stopOnEntry": true,
-            "runtimeExecutable": "D:\\Users\\vilhelemp.14inf\\Desktop\\Laragon\\bin\\php\\php-7.3.12-Win32-VC15-x64\\php.exe"
+            "runtimeExecutable":"D:\\Users\\liktorsz.14inf\\Desktop\\Laragon\\bin\\php\\php-7.3.12-Win32-VC15-x64\\php.exe"
         }
     ]
 }

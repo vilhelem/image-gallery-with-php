@@ -1,14 +1,14 @@
 <main class="container">
-    <!-- lapméret váltó -->
+    
+    <!-- Lapméret váltó -->
     <div class="row">
-        <form action="">
+        <form action="" method="GET">
             <div class="form-group">
                 <label for="size">Page size: </label>
                 <select name="size" id="size" class="form-control">
                     <?php foreach($possiblePageSizes as $pagesize): ?>
-                    <option <?=$size==$pagesize? "selected" : "" ?>><?=$pagesize?></option>
+                        <option <?=$size==$pagesize? "selected" : ""?>><?=$pagesize?></option>
                     <?php endforeach ?>
-
                 </select>
             </div>
             <div class="form-group">
@@ -16,15 +16,18 @@
             </div>
         </form>
     </div>
+
     <hr>
 
     <!-- Lapozósáv -->
     <?php require "pagination.php"?>
 
+    <!-- Képek megjelenítése -->
     <?php foreach($content as $picture): ?>
-    <img src="<?=$picture['thumbnail']?>">
-    <?php endforeach?>
+        <img src="<?=$picture['thumbnail']?>">
+    <?php endforeach ?>
 
+
+    <!-- Lapozósáv -->
     <?php require "pagination.php"?>
-
 </main>
