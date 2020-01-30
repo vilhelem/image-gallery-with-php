@@ -73,3 +73,22 @@ function homeController() {
         ]
     ];
 }
+/**
+ * Single Image Controller - Egy db kép megjelenítése
+ *
+ * @param [type] $params
+ * @return void
+ */
+function singleImageController($params){
+    
+    $connection= getConnection();
+    $picture = getImageById($connection, $params['id']);
+
+    return [
+        'singleImage',
+        [
+            'title' => $picture['title'],
+            'picture' => $picture
+        ]
+    ];
+}
